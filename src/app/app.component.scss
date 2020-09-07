@@ -1,0 +1,9 @@
+@import '../colors.scss';
+@import '../typography.scss';
+
+.nav-link{
+    font-family: $title-font!important;
+}
+.nav-link:hover{
+    color: $primary-color-19!important;
+}

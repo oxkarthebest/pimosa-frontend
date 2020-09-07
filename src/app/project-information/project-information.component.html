@@ -1,0 +1,128 @@
+<div class="container-fluid">
+  <div class="row my-2">
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+      <h2 class="inner-section-title">Información del Proyecto</h2>
+    </div>
+  </div>
+  <div class="row my-2">
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+      <h3 class="inner-section-subtitle">
+        <span class="{{project.statusClass}}">
+          <i class="fas fa-circle"></i>
+        </span>
+        <span class="inner-section-text ml-1"><small>{{project.status}}</small></span>
+      </h3>
+    </div>
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+      <div class="row my-2">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+          <h5 class="inner-section-subtitle">
+            Nombre de Proyecto:
+            <span class="inner-section-text">
+              {{project.name}}
+            </span>
+          </h5>
+        </div>
+      </div>
+      <div class="row my-2">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6 col-xl-6">
+          <h6 class="inner-section-subtitle">Código</h6>
+          <p class="inner-section-text">{{project.code}}</p>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6 col-xl-6">
+          <h6 class="inner-section-subtitle">Purchase Order</h6>
+          <p class="inner-section-text">{{project.purchaseOrder}}</p>
+        </div>
+      </div>
+      <div class="row my-2">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6 col-xl-6">
+          <h6 class="inner-section-subtitle">Industria</h6>
+          <p class="inner-section-text">{{project.industry}}</p>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6 col-xl-6">
+          <h6 class="inner-section-subtitle">Fecha de Inicio</h6>
+          <p class="inner-section-text">{{project.startDate}}</p>
+        </div>
+      </div>
+      <div class="row my-2">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6 col-xl-6">
+          <h6 class="inner-section-subtitle">Fecha Programada</h6>
+          <p class="inner-section-text">{{project.plannedEndDate}}</p>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6 col-xl-6">
+          <h6 class="inner-section-subtitle">Fecha de Término</h6>
+          <p class="inner-section-text">{{project.endDate}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row my-2">
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+      <h2 class="inner-section-title">Información de Tareas</h2>
+    </div>
+  </div>
+
+  <div *ngIf="projectInformation">
+    <div class="row my-1">
+      <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 col-xl-6">
+        <h6>
+          <span class="card-status-ongoing">
+            <i class="fas fa-circle"></i>
+          </span>
+          <span class="inner-section-subtitle ml-1">Tareas en Curso</span>
+        </h6>
+      </div>
+      <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 col-xl-6 text-left">
+        <p class="inner-section-text">{{projectInformation.tasksInProgress}}</p>
+      </div>
+    </div>
+
+    <div class="row my-1">
+      <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 col-xl-6">
+        <h6>
+          <span class="card-status-delayed">
+            <i class="fas fa-circle"></i>
+          </span>
+          <span class="inner-section-subtitle ml-1">Tareas Retrasadas</span>
+        </h6>
+      </div>
+      <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 col-xl-6 text-left">
+        <p class="inner-section-text">{{projectInformation.tasksDelayed}}</p>
+      </div>
+    </div>
+
+    <div class="row my-1">
+      <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 col-xl-6">
+        <h6>
+          <span class="card-status-finished">
+            <i class="fas fa-circle"></i>
+          </span>
+          <span class="inner-section-subtitle"> Tareas Completadas</span>
+        </h6>
+      </div>
+      <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 col-xl-6 text-left">
+        <p class="inner-section-text">{{projectInformation.tasksCompletes}}</p>
+      </div>
+    </div>
+
+    <div class="row my-2">
+      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+        <h2 class="inner-section-title">Progreso</h2>
+      </div>
+    </div>
+
+    <div class="row my-2">
+      <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10 col-xl-10">
+        <div class="progress">
+          <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar"
+            [style.width]="getProgress()">
+          </div>
+        </div>
+      </div>
+      <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 col-xl-2">
+        <p class="inner-section-text">{{projectInformation.progress}}%</p>
+      </div>
+    </div>
+  </div>
+</div>

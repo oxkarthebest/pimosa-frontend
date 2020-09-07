@@ -1,0 +1,114 @@
+<!-- Section Inner Title -->
+<h2 class="inner-section-title">
+  <span>Detalles de Maquinaria</span>
+</h2>
+<div class="row my-4">
+  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6 col-xl-6">
+    <h6 class="inner-section-subtitle">Nombre</h6>
+    <p class="inner-section-text">{{machinery.name}}</p>
+  </div>
+  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6 col-xl-6">
+    <h6 class="inner-section-subtitle">Tipo</h6>
+    <p class="inner-section-text">{{machinery.type}}</p>
+  </div>
+</div>
+<div class="row my-4">
+  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6 col-xl-6">
+    <h6 class="inner-section-subtitle">Código</h6>
+    <p class="inner-section-text">{{machinery.code}}</p>
+  </div>
+  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6 col-xl-6">
+    <h6 class="inner-section-subtitle">Marca</h6>
+    <p class="inner-section-text">{{machinery.brand}}</p>
+  </div>
+</div>
+<div class="row my-4">
+  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6 col-xl-6">
+    <h6 class="inner-section-subtitle">Precio</h6>
+    <p class="inner-section-text">{{machinery.price}}</p>
+  </div>
+  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6 col-xl-6">
+    <h6 class="inner-section-subtitle">Costo de Mantenimiento</h6>
+    <p class="inner-section-text">{{machinery.maintenanceCost}}</p>
+  </div>
+</div>
+<div class="row my-4">
+  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6 col-xl-6">
+    <h6 class="inner-section-subtitle">Operación</h6>
+    <p class="inner-section-text">{{machinery.operation}}</p>
+  </div>
+  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6 col-xl-6">
+    <h6 class="inner-section-subtitle">Trabajo</h6>
+    <p class="inner-section-text">{{machinery.work}}</p>
+  </div>
+</div>
+<div class="row my-4">
+  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6 col-xl-6">
+    <h6 class="inner-section-subtitle">Fuente de Energía</h6>
+    <p class="inner-section-text">{{machinery.powerSource}}</p>
+  </div>
+  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6 col-xl-6">
+    <h6 class="inner-section-subtitle">Modo de Desplazamiento</h6>
+    <p class="inner-section-text">{{machinery.displacement}}</p>
+  </div>
+</div>
+<h6 class="inner-section-subtitle my-4">Adquirido El: <span
+    class="inner-section-text">{{machinery.acquisitionDate}}</span></h6>
+
+<!-- Section Inner Title -->
+<h2 class="inner-section-title">
+  <span>Proyectos Involucrados</span>
+</h2>
+
+<div class="row" *ngIf="projectList.length > 0; else emptyProjectList">
+  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12" *ngFor="let project of projectList">
+    <div class="card my-2">
+      <div class="card-header">
+        <span class="{{project.statusClass}}">
+          <i class="fas fa-circle"></i>
+        </span>
+        <span class="card-status-text ml-1">{{project.status}}</span>
+      </div>
+      <div class="card-body">
+        <h5 class="card-title">{{project.name}}</h5>
+        <div class="row my-2">
+          <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6 col-xl-6">
+            <h6 class="card-subtitle">Código</h6>
+            <p class="card-text"><small>{{project.code}}</small></p>
+          </div>
+          <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6 col-xl-6">
+            <h6 class="card-subtitle">Purchase Order</h6>
+            <p class="card-text"><small>{{project.purchaseOrder}}</small></p>
+          </div>
+        </div>
+        <div class="row my-2">
+          <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6 col-xl-6">
+            <h6 class="card-subtitle">Industria</h6>
+            <p class="card-text"><small>{{project.industry}}</small></p>
+          </div>
+          <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6 col-xl-6">
+            <h6 class="card-subtitle">Fecha de Inicio</h6>
+            <p class="card-text"><small>{{project.startDate}}</small></p>
+          </div>
+        </div>
+        <div class="row my-2">
+          <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6 col-xl-6">
+            <h6 class="card-subtitle">Fecha Programada</h6>
+            <p class="card-text"><small>{{project.plannedEndDate}}</small></p>
+          </div>
+          <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6 col-xl-6">
+            <h6 class="card-subtitle">Fecha de Término</h6>
+            <p class="card-text"><small>{{project.endDate}}</small></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<ng-template #emptyProjectList>
+  <div class="row my-4">
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 text-center">
+      <h2 class="placeholder-title">No hay proyectos registrados</h2>
+    </div>
+  </div>
+</ng-template>

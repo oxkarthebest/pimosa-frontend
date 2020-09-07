@@ -1,0 +1,237 @@
+<!-- Section Title -->
+<h2 class="inner-section-title">
+  <span>Modificar Proyecto</span>
+</h2>
+
+<!-- Alert Messages -->
+<div class="alert alert-success alert-dismissible fade show" role="alert" *ngIf="successAlertMessage">
+  {{successAlertMessage}}
+  <button type="button" class="close" aria-label="Close" (click)="closeSuccessAlert()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+
+<div class="alert alert-danger alert-dismissible fade show" role="alert" *ngIf="errorAlertMessage">
+  {{errorAlertMessage}}
+  <button type="button" class="close" aria-label="Close" (click)="closeErrorAlert()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+
+<form [formGroup]="updateProjectForm" (submit)="submitUpdateProjectForm()">
+  <div class="form-row">
+    <div class="form-group col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+      <!-- Name Input -->
+      <div class="form-group">
+        <label for="nameInput">
+          <span class="form-label">Nombre del Proyecto</span>
+        </label>
+        <input type="text" class="form-control" id="nameInput" formControlName="name"
+          [ngClass]="(updateProjectForm.get('name').invalid && (updateProjectForm.get('name').touched || updateProjectForm.get('name').dirty) ) ? 'input-invalid' : 'input-default'" />
+        <!-- Helper Text -->
+        <div
+          *ngIf="(updateProjectForm.get('name').valid) || (updateProjectForm.get('name').invalid && (updateProjectForm.get('name').pristine && updateProjectForm.get('name').untouched) )">
+          <small id="nameInputHelp" class="form-text text-muted">
+            Ingrese el nombre del proyecto.
+          </small>
+        </div>
+        <!-- Error Handling -->
+        <div
+          *ngIf="updateProjectForm.get('name').invalid && (updateProjectForm.get('name').dirty || updateProjectForm.get('name').touched)">
+          <small id="nameInputError" class="form-text text-danger">
+            <div *ngIf="updateProjectForm.get('name').hasError('required')">
+              Es necesario ingresar el nombre del proyecto.
+            </div>
+            <div *ngIf="updateProjectForm.get('name').hasError('maxlength')">
+              El nombre del proyecto no puede contener más de 254 caracteres.
+            </div>
+            <div *ngIf="updateProjectForm.get('name').hasError('minlength')">
+              El nombre del proyecto debe contener al menos 2 caracteres.
+            </div>
+          </small>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-row">
+    <div class="form-group col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+      <!-- Code Input -->
+      <div class="form-group">
+        <label for="codeInput">
+          <span class="form-label">Código de Proyecto</span>
+        </label>
+        <input type="text" class="form-control" id="codeInput" formControlName="code"
+          [ngClass]="(updateProjectForm.get('code').invalid && (updateProjectForm.get('code').touched || updateProjectForm.get('code').dirty) ) ? 'input-invalid' : 'input-default'" />
+        <!-- Helper Text -->
+        <div
+          *ngIf="(updateProjectForm.get('code').valid) || (updateProjectForm.get('code').invalid && (updateProjectForm.get('code').pristine && updateProjectForm.get('code').untouched) )">
+          <small id="codeInputHelp" class="form-text text-muted">
+            Ingrese el código de proyecto.
+          </small>
+        </div>
+        <!-- Error Handling -->
+        <div
+          *ngIf="updateProjectForm.get('code').invalid && (updateProjectForm.get('code').dirty || updateProjectForm.get('code').touched)">
+          <small id="codeInputError" class="form-text text-danger">
+            <div *ngIf="updateProjectForm.get('code').hasError('required')">
+              Es necesario ingresar el código del proyecto.
+            </div>
+            <div *ngIf="updateProjectForm.get('code').hasError('maxlength')">
+              El código del proyecto no puede contener más de 124 caracteres.
+            </div>
+            <div *ngIf="updateProjectForm.get('code').hasError('minlength')">
+              El código del proyecto debe contener al menos 2 caracteres.
+            </div>
+          </small>
+        </div>
+      </div>
+    </div>
+    <div class="form-group col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+      <!-- Purchase Order Input -->
+      <div class="form-group">
+        <label for="purchaseOrderInput">
+          <span class="form-label">Orden de Compra</span>
+        </label>
+        <input type="text" class="form-control" id="purchaseOrderInput" formControlName="purchaseOrder"
+          [ngClass]="(updateProjectForm.get('purchaseOrder').invalid && (updateProjectForm.get('purchaseOrder').touched || updateProjectForm.get('purchaseOrder').dirty) ) ? 'input-invalid' : 'input-default'" />
+        <!-- Helper Text -->
+        <div
+          *ngIf="(updateProjectForm.get('purchaseOrder').valid) || (updateProjectForm.get('purchaseOrder').invalid && (updateProjectForm.get('purchaseOrder').pristine && updateProjectForm.get('purchaseOrder').untouched) )">
+          <small id="purchaseOrderInputHelp" class="form-text text-muted">
+            Ingrese la orden de compra.
+          </small>
+        </div>
+        <!-- Error Handling -->
+        <div
+          *ngIf="updateProjectForm.get('purchaseOrder').invalid && (updateProjectForm.get('purchaseOrder').dirty || updateProjectForm.get('purchaseOrder').touched)">
+          <small id="purchaseOrderInputError" class="form-text text-danger">
+            <div *ngIf="updateProjectForm.get('purchaseOrder').hasError('required')">
+              Es necesario ingresar el la orden de compra del proyecto.
+            </div>
+            <div *ngIf="updateProjectForm.get('purchaseOrder').hasError('maxlength')">
+              La la orden de compra del proyecto no puede contener más de 254 caracteres.
+            </div>
+            <div *ngIf="updateProjectForm.get('purchaseOrder').hasError('minlength')">
+              La la orden de compra del proyecto debe contener al menos 2 caracteres.
+            </div>
+          </small>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-row">
+    <div class="form-group col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+      <!-- Description Input -->
+      <div class="form-group">
+        <label for="descriptionInput">
+          <span class="form-label">Descripción del Proyecto</span>
+        </label>
+        <textarea type="text" class="form-control" id="descriptionInput" formControlName="description"
+          [ngClass]="(updateProjectForm.get('description').invalid && (updateProjectForm.get('description').touched || updateProjectForm.get('description').dirty) ) ? 'input-invalid' : 'input-default'">
+        </textarea>
+        <!-- Helper Text -->
+        <div
+          *ngIf="(updateProjectForm.get('description').valid) || (updateProjectForm.get('description').invalid && (updateProjectForm.get('description').pristine && updateProjectForm.get('description').untouched) )">
+          <small id="descriptionInputHelp" class="form-text text-muted">
+            Ingrese la descripción del proyecto.
+          </small>
+        </div>
+        <!-- Error Handling -->
+        <div
+          *ngIf="updateProjectForm.get('description').invalid && (updateProjectForm.get('description').dirty || updateProjectForm.get('description').touched)">
+          <small id="descriptionInputError" class="form-text text-danger">
+            <div *ngIf="updateProjectForm.get('description').hasError('maxlength')">
+              La descripción del proyecto no puede contener más de 400 caracteres.
+            </div>
+            <div *ngIf="updateProjectForm.get('description').hasError('minlength')">
+              La descripción del proyecto debe contener al menos 2 caracteres.
+            </div>
+          </small>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-row">
+    <div class="form-group col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+      <!-- Industry Input -->
+      <label for="industry">
+        <span class="form-label">Industria</span>
+      </label>
+      <select class="form-control input-default" id="industry" formControlName="industry"
+        aria-describedby="industryHelp">
+        <option selected disabled value="">Seleccionar</option>
+        <option *ngFor="let industry of industryList" value={{industry.pk}}>
+          {{industry.name}}</option>
+      </select>
+      <small id="industryHelp" class="form-text text-muted">
+        Seleccione la industria.
+      </small>
+    </div>
+  </div>
+
+  <div class="form-row">
+    <div class="form-group col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+      <!-- Start Date Input -->
+      <div class="form-group">
+        <label for="startDateInput">
+          <span class="form-label">Fecha de Inicio</span>
+        </label>
+        <input type="date" class="form-control" id="startDateInput" formControlName="startDate"
+          [ngClass]="(updateProjectForm.get('startDate').invalid && (updateProjectForm.get('startDate').touched || updateProjectForm.get('startDate').dirty) ) ? 'input-invalid' : 'input-default'" />
+        <!-- Helper Text -->
+        <div
+          *ngIf="(updateProjectForm.get('startDate').valid) || (updateProjectForm.get('startDate').invalid && (updateProjectForm.get('startDate').pristine && updateProjectForm.get('startDate').untouched) )">
+          <small id="startDateInputHelp" class="form-text text-muted">
+            Ingrese la fecha de inicio.
+          </small>
+        </div>
+        <!-- Error Handling -->
+        <div
+          *ngIf="updateProjectForm.get('startDate').invalid && (updateProjectForm.get('startDate').dirty || updateProjectForm.get('startDate').touched)">
+          <small id="startDateInputError" class="form-text text-danger">
+            <div *ngIf="updateProjectForm.get('startDate').hasError('required')">
+              Es necesario ingresar la fecha de inicio del proyecto.
+            </div>
+          </small>
+        </div>
+      </div>
+    </div>
+    <div class="form-group col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+      <!-- Planned End Date Input -->
+      <div class="form-group">
+        <label for="plannedEndDateInput">
+          <span class="form-label">Fecha de Término</span>
+        </label>
+        <input type="date" class="form-control" id="plannedEndDateInput" formControlName="plannedEndDate"
+          [ngClass]="(updateProjectForm.get('plannedEndDate').invalid && (updateProjectForm.get('plannedEndDate').touched || updateProjectForm.get('plannedEndDate').dirty) ) ? 'input-invalid' : 'input-default'" />
+        <!-- Helper Text -->
+        <div
+          *ngIf="(updateProjectForm.get('plannedEndDate').valid) || (updateProjectForm.get('plannedEndDate').invalid && (updateProjectForm.get('plannedEndDate').pristine && updateProjectForm.get('plannedEndDate').untouched) )">
+          <small id="plannedEndDateInputHelp" class="form-text text-muted">
+            Ingrese la fecha programada de término.
+          </small>
+        </div>
+        <!-- Error Handling -->
+        <div
+          *ngIf="updateProjectForm.get('plannedEndDate').invalid && (updateProjectForm.get('plannedEndDate').dirty || updateProjectForm.get('plannedEndDate').touched)">
+          <small id="plannedEndDateInputError" class="form-text text-danger">
+            <div *ngIf="updateProjectForm.get('plannedEndDate').hasError('required')">
+              Es necesario ingresar el la fecha programada de término.
+            </div>
+          </small>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-row">
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 text-center">
+      <!-- Submit Form Button -->
+      <button type="submit" class="btn btn-block primary-button"
+        [disabled]="!updateProjectForm.valid">Modificar</button>
+    </div>
+  </div>
+</form>

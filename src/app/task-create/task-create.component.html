@@ -1,0 +1,148 @@
+<div class="alert alert-success alert-dismissible fade show" role="alert" *ngIf="successAlertMessage">
+  {{successAlertMessage}}
+  <button type="button" class="close" aria-label="Close" (click)="closeSuccessAlert()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+
+<div class="alert alert-danger alert-dismissible fade show" role="alert" *ngIf="errorAlertMessage">
+  {{errorAlertMessage}}
+  <button type="button" class="close" aria-label="Close" (click)="closeErrorAlert()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+
+<form [formGroup]="newTaskForm" (submit)="submitNewTaskForm()">
+  <div class="form-row">
+    <div class="form-group col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+      <!-- Name Input -->
+      <div class="form-group">
+        <label for="nameInput">
+          <span class="form-label">Nombre de Tarea</span>
+        </label>
+        <input type="text" class="form-control" id="nameInput" formControlName="name"
+          [ngClass]="(newTaskForm.get('name').invalid && (newTaskForm.get('name').touched || newTaskForm.get('name').dirty) ) ? 'input-invalid' : 'input-default'" />
+        <!-- Helper Text -->
+        <div
+          *ngIf="(newTaskForm.get('name').valid) || (newTaskForm.get('name').invalid && (newTaskForm.get('name').pristine && newTaskForm.get('name').untouched) )">
+          <small id="nameInputHelp" class="form-text text-muted">
+            Ingrese el nombre de la tarea
+          </small>
+        </div>
+        <!-- Error Handling -->
+        <div
+          *ngIf="newTaskForm.get('name').invalid && (newTaskForm.get('name').dirty || newTaskForm.get('name').touched)">
+          <small id="nameInputError" class="form-text text-danger">
+            <div *ngIf="newTaskForm.get('name').hasError('required')">
+              Es necesario ingresar el nombre de la tarea.
+            </div>
+            <div *ngIf="newTaskForm.get('name').hasError('maxlength')">
+              El nombre de la tarea no puede contener más de 254 caracteres.
+            </div>
+            <div *ngIf="newTaskForm.get('name').hasError('minlength')">
+              El nombre de la tarea debe contener al menos 2 caracteres.
+            </div>
+          </small>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-row">
+    <div class="form-group col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+      <!-- Description Input -->
+      <div class="form-group">
+        <label for="descriptionInput">
+          <span class="form-label">Descripción de Tarea</span>
+        </label>
+        <textarea type="text" class="form-control" id="descriptionInput" formControlName="description"
+          [ngClass]="(newTaskForm.get('description').invalid && (newTaskForm.get('description').touched || newTaskForm.get('description').dirty) ) ? 'input-invalid' : 'input-default'">
+            </textarea>
+        <!-- Helper Text -->
+        <div
+          *ngIf="(newTaskForm.get('description').valid) || (newTaskForm.get('description').invalid && (newTaskForm.get('description').pristine && newTaskForm.get('description').untouched) )">
+          <small id="descriptionInputHelp" class="form-text text-muted">
+            Ingrese la descripción de la tarea.
+          </small>
+        </div>
+        <!-- Error Handling -->
+        <div
+          *ngIf="newTaskForm.get('description').invalid && (newTaskForm.get('description').dirty || newTaskForm.get('description').touched)">
+          <small id="descriptionInputError" class="form-text text-danger">
+            <div *ngIf="newTaskForm.get('description').hasError('required')">
+              Es necesario ingresar la descripción de la tarea.
+            </div>
+            <div *ngIf="newTaskForm.get('description').hasError('maxlength')">
+              La descripción de la tarea no puede contener más de 400 caracteres.
+            </div>
+            <div *ngIf="newTaskForm.get('description').hasError('minlength')">
+              La descripción de la tarea debe contener al menos 2 caracteres.
+            </div>
+          </small>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-row">
+    <div class="form-group col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+      <!-- Start Date Input -->
+      <div class="form-group">
+        <label for="startDateInput">
+          <span class="form-label">Fecha de Inicio</span>
+        </label>
+        <input type="date" class="form-control" id="startDateInput" formControlName="startDate"
+          [ngClass]="(newTaskForm.get('startDate').invalid && (newTaskForm.get('startDate').touched || newTaskForm.get('startDate').dirty) ) ? 'input-invalid' : 'input-default'" />
+        <!-- Helper Text -->
+        <div
+          *ngIf="(newTaskForm.get('startDate').valid) || (newTaskForm.get('startDate').invalid && (newTaskForm.get('startDate').pristine && newTaskForm.get('startDate').untouched) )">
+          <small id="startDateInputHelp" class="form-text text-muted">
+            Ingrese la fecha de inicio.
+          </small>
+        </div>
+        <!-- Error Handling -->
+        <div
+          *ngIf="newTaskForm.get('startDate').invalid && (newTaskForm.get('startDate').dirty || newTaskForm.get('startDate').touched)">
+          <small id="startDateInputError" class="form-text text-danger">
+            <div *ngIf="newTaskForm.get('startDate').hasError('required')">
+              Es necesario ingresar la fecha de inicio de la tarea.
+            </div>
+          </small>
+        </div>
+      </div>
+    </div>
+    <div class="form-group col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+      <!-- Planned End Date Input -->
+      <div class="form-group">
+        <label for="plannedEndDateInput">
+          <span class="form-label">Fecha de Término</span>
+        </label>
+        <input type="date" class="form-control" id="plannedEndDateInput" formControlName="plannedEndDate"
+          [ngClass]="(newTaskForm.get('plannedEndDate').invalid && (newTaskForm.get('plannedEndDate').touched || newTaskForm.get('plannedEndDate').dirty) ) ? 'input-invalid' : 'input-default'" />
+        <!-- Helper Text -->
+        <div
+          *ngIf="(newTaskForm.get('plannedEndDate').valid) || (newTaskForm.get('plannedEndDate').invalid && (newTaskForm.get('plannedEndDate').pristine && newTaskForm.get('plannedEndDate').untouched) )">
+          <small id="plannedEndDateInputHelp" class="form-text text-muted">
+            Ingrese la fecha programada de término.
+          </small>
+        </div>
+        <!-- Error Handling -->
+        <div
+          *ngIf="newTaskForm.get('plannedEndDate').invalid && (newTaskForm.get('plannedEndDate').dirty || newTaskForm.get('plannedEndDate').touched)">
+          <small id="plannedEndDateInputError" class="form-text text-danger">
+            <div *ngIf="newTaskForm.get('plannedEndDate').hasError('required')">
+              Es necesario ingresar el la fecha programada de término.
+            </div>
+          </small>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-row">
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 text-center">
+      <!-- Submit Form Button -->
+      <button type="submit" class="btn btn-block primary-button" [disabled]="!newTaskForm.valid">Crear</button>
+    </div>
+  </div>
+</form>

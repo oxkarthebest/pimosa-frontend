@@ -1,0 +1,17 @@
+<h2 class="section-title">
+    <span class="section-icon mr-2"><i class="fas fa-tools"></i></span>
+    <span>Administración de Maquinaria</span>
+</h2>
+<div class="row mb-2">
+    <div class="col-xs-12 cols-sm-12 col-md-6 col-lg-6 col-xl-6 mb-2">
+        <button type="button" class="btn btn-block primary-button" (click)="navigateTo(1)"><span><i class="fas fa-info-circle"></i></span>&nbsp;Información</button>
+    </div>
+    <div class="col-xs-12 cols-sm-12 col-md-6 col-lg-6 col-xl-6 mb-2">
+        <button type="button" class="btn btn-block primary-button" (click)="navigateTo(2)"><span><i class="fas fa-pencil-alt"></i></span>&nbsp;Modificar</button>
+    </div>
+</div>
+
+<div *ngIf="machinery">
+    <app-machinery-information [machinery]="machinery" *ngIf="showInformation"></app-machinery-information>
+    <app-machinery-update [machinery]="machinery" *ngIf="showModify" (machineryUpdatedEvent)="notifyOfMachineryUpdateEvent($event)"></app-machinery-update>
+</div>

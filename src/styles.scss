@@ -1,0 +1,210 @@
+// /* You can add global styles to this file, and also import other style files */
+@import './colors.scss';
+@import './typography.scss';
+
+// Titles
+.section-title{
+    color: $primary-color-19;
+    font-family: $title-font;
+    font-size: 2em;
+    font-weight: 700;
+}
+.inner-section-title{
+    color: $secondary-color-12;
+    font-family: $title-font;
+    font-size: 1.5em;
+    font-weight: 500;
+}
+.inner-section-subtitle{
+    color: $primary-color-16;
+    font-family: $title-font;
+    font-size: 1.25em;
+    font-weight: 450;
+}
+.placeholder-title{
+    color: $baw-color-03;
+    font-family: $title-font;
+    font-size: 1.25em;
+    font-weight: 500;
+}
+
+.inner-section-text{
+    color: $baw-color-25;
+    font-family: $primary-font;
+    padding-left: 1em;
+}
+
+// Icons
+.section-icon{
+    color: $secondary-color-12;
+    font-size: 1em;
+}
+.inner-section-icon{
+    color: $baw-color-09;
+    font-size: 1em;
+}
+.form-icons{
+    color: $primary-color-03;
+    font-size: 1em;
+}
+
+// Buttons
+.primary-button{
+    color: $baw-color-03;
+    font-family: $title-font;
+    border-color: $primary-color-19;
+    background-color: $primary-color-19;
+}
+.primary-button:hover{
+    color: $baw-color-03;
+    border-color: $primary-color-16;
+    box-shadow: 0rem 0rem 0rem 0.2rem $primary-color-16;
+}
+.primary-button:focus{
+    color: $baw-color-03;
+    border-color: $primary-color-16;
+    box-shadow: 0rem 0rem 0rem 0.3rem $primary-color-16;
+}
+.options-button{
+    color: $primary-color-15;
+    border-color: transparent;
+    background-color: transparent;
+}
+.options-button:hover{
+    border-color: transparent;
+    box-shadow: transparent;
+}
+.options-button:focus{
+    border-color: transparent;
+    box-shadow: transparent;
+}
+
+//Dropdowns
+.dropdown-item:hover{
+  cursor: pointer;
+}
+
+// Forms
+.input-default{
+    border-color: $baw-color-06;
+}
+.input-default:focus{
+    border-color: $primary-color-09;
+    box-shadow: 0rem 0rem 0rem 0.2rem $primary-color-09;
+}
+.input-invalid{
+    border-color: $error-color-17;
+}
+.input-invalid:focus{
+    border-color: $error-color-17;
+    box-shadow: 0rem 0rem 0rem 0.2rem $error-color-17;
+}
+.input-accent{
+    background-color: $primary-color-17;
+    color: $baw-color-02;
+}
+.custom-control-input:not(:disabled):active~.custom-control-label::before {
+    color: $baw-color-12;
+    background-color: $primary-color-09;
+    border-color: $primary-color-09;
+    box-shadow: 0rem 0rem 0rem 0.2rem $primary-color-09;
+}
+.custom-control-input:checked~.custom-control-label::before {
+    color: $primary-color-13;
+    border-color: $primary-color-06;
+    background-color: $primary-color-06;
+    box-shadow: 0rem 0rem 0rem 0.2rem $primary-color-09;
+}
+
+.form-label{
+    font-weight: 475;
+    font-size: 1.15em;
+    font-family: $title-font;
+    color: $primary-color-12;
+}
+
+// Alerts
+.alert-success{
+    background-color: $success-color-15;
+    font-family: $primary-font;
+    color: $baw-color-25;
+}
+.alert-danger{
+    background-color: $error-color-17;
+    font-family: $primary-font;
+    color: $baw-color-03;
+}
+
+// Cards
+.card-title{
+    color: $secondary-color-12;
+    font-family: $title-font;
+    font-size: 1.15em;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.075em;
+}
+.card-subtitle{
+    color: $primary-color-16;
+    font-family: $primary-font;
+    font-weight: 500;
+}
+.card-text{
+    color: $baw-color-25;
+    font-family: $primary-font;
+}
+
+.card-primary{
+    border-color: $baw-color-06;
+    border-radius: 1rem;
+    min-height: 4rem;
+}
+.card-primary:hover{
+    cursor: pointer;
+    border-color: $primary-color-09;
+    box-shadow: 0rem 0rem 0rem 0.2rem $primary-color-12;
+}
+.card-primary:active{
+    border-color: $primary-color-09;
+    box-shadow: 0rem 0rem 0rem 0.3rem $primary-color-12;
+}
+
+.card-primary-new{
+    border-color: $success-color-09;
+    box-shadow: 0rem 0rem 0rem 0.3rem $success-color-12;
+}
+
+.card-primary-updated{
+    border-color: $primary-color-06;
+    box-shadow: 0rem 0rem 0rem 0.3rem $primary-color-06;
+}
+
+.card-primary-active{
+    border-color: $primary-color-12;
+    border-radius: 1rem;
+    box-shadow: 0rem 0rem 0rem 0.2rem $primary-color-15;
+    min-height: 4rem;
+    cursor: pointer;
+}
+.card-status-text{
+  font-family: $title-font;
+  font-size: 1.15em;
+  text-transform: uppercase;
+}
+.card-status-ongoing{
+  color: $success-color-15;
+}
+
+.card-status-waiting{
+  color: $baw-color-14;
+}
+.card-status-delayed{
+  color: $error-color-17;
+}
+.card-status-finished{
+  color: $primary-color-15;
+}
+
+.progress-bar{
+  background-color: $primary-color-19!important;
+}

@@ -1,0 +1,257 @@
+<div class="container-fluid">
+
+  <!-- Section Inner Title -->
+  <div class="row my-2">
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+      <h2 class="inner-section-title">
+        <span>Tarea Seleccionada</span>
+      </h2>
+    </div>
+  </div>
+
+  <!-- Alert Message -->
+  <div class="row" *ngIf="successAlertMessage">
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+      <div class="alert alert-success alert-dismissible fade show" role="alert">
+        {{successAlertMessage}}
+        <button type="button" class="close" aria-label="Close" (click)="closeSuccessAlert()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Selected Task -->
+  <div *ngIf="selectedTask; else noSelectedTask">
+    <div class="row my-2">
+      <!-- Selected Task Name -->
+      <div class="col-xs-11 col-sm-11 col-md-11 col-lg-11 col-xl-11">
+        <h5 class="inner-section-subtitle">{{selectedTask.name}}</h5>
+      </div>
+      <!-- Selected Task Options -->
+      <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1 col-xl-1 text-right">
+        <div class="btn-group dropleft" role="group">
+          <button id="btnGroupDrop1" type="button" class="btn btn-link options-button" data-toggle="dropdown">
+            <i class="fas fa-ellipsis-v"></i>
+          </button>
+          <div class="dropdown-menu">
+            <a class="dropdown-item" (click)="markTaskAsCompleted()">
+              <span>
+                <i class="fas fa-check"></i>
+              </span>
+              Completar
+            </a>
+            <a class="dropdown-item" data-toggle="modal" data-target="#updateTaskModal">
+              <span>
+                <i class="fas fa-pencil-alt"></i>
+              </span>
+              Modificar
+            </a>
+            <a class="dropdown-item" data-toggle="modal" data-target="#exampleModalCenter">
+              <span>
+                <i class="fas fa-trash-alt"></i>
+              </span>
+              Eliminar
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row my-1">
+      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+        <h6>
+          <span class="{{selectedTask.statusClass}}">
+            <i class="fas fa-circle"></i>
+          </span>
+          <span class="inner-section-text">{{selectedTask.status}}</span>
+        </h6>
+      </div>
+    </div>
+
+    <div class="row my-1">
+      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+        <p class="inner-section-text px-4">{{selectedTask.description}}</p>
+      </div>
+    </div>
+
+    <div class="row my-1">
+      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6 col-xl-6">
+        <h6 class="card-subtitle">Fecha Programada</h6>
+        <p class="card-text px-4"><small>{{selectedTask.plannedEndDate}}</small></p>
+      </div>
+      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6 col-xl-6">
+        <h6 class="card-subtitle">Fecha de Término</h6>
+        <p class="card-text px-4"><small>{{selectedTask.endDate}}</small></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- No Selected Task Else Statement -->
+  <ng-template #noSelectedTask>
+    <div class="row my-2">
+      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 text-center">
+        <h2 class="placeholder-title">No se ha seleccionado una tarea.</h2>
+      </div>
+    </div>
+  </ng-template>
+
+  <!-- Section Inner Title -->
+  <div class="row my-2">
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+      <h2 class="inner-section-title">
+        <span>Lista Tareas</span>
+      </h2>
+    </div>
+  </div>
+
+  <!-- Task List Filters -->
+  <div class="form-row my-2">
+    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-3 col-xl-3">
+      <select class="custom-select input-default" (change)="showingListChange($event.target.value)">
+        <option selected disabled value="">Mostrar</option>
+        <option *ngFor="let num of showList" value="{{num}}">{{num}} Registros</option>
+        <option value="0">Mostrar Todos</option>
+      </select>
+    </div>
+    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-3 col-xl-3">
+      <select class="custom-select input-default" (change)="statusListChange($event.target.value)">
+        <option selected disabled value="">Estado</option>
+        <option *ngFor="let status of statusList" value="{{status.pk}}">{{status.name}}</option>
+        <option value="0">Mostrar Todos</option>
+      </select>
+    </div>
+    <div class="col-xs-12 col-sm-12 col-md-8 col-lg-4 col-xl-4">
+      <div class="input-group">
+        <input type="text" class="form-control input-default" placeholder="Buscar" [ngModel]="filterText"
+          (ngModelChange)="filterByName($event)">
+        <div class="input-group-append ">
+          <span class="input-group-text input-accent">
+            <span class="form-icons"><i class="fas fa-search"></i></span>
+          </span>
+        </div>
+      </div>
+    </div>
+    <div class="col-xs-12 col-sm-12 col-md-2 col-lg-2 col-xl-2">
+      <button type="button" class="btn btn-block primary-button" data-toggle="modal" data-target="#staticBackdrop"
+        (click)="showCreationModal()">
+        <i class="fas fa-plus"></i>
+      </button>
+    </div>
+  </div>
+
+  <div class="row my-1" *ngIf="taskList.length > 0; else emptyTaskList">
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12" *ngFor="let task of taskList">
+      <div class="card card-primary {{task.newTaskClass}} {{task.updatedTaskClass}} {{task.selectedTaskClass}} my-1"
+        (click)="selectTask(task)">
+        <div class="card-header">
+          <h5>
+            <span class="{{task.statusClass}}">
+              <i class="fas fa-circle"></i>
+            </span>
+            <span class="card-status-text ml-1">
+              {{task.status}}
+            </span>
+          </h5>
+        </div>
+
+        <div class="card-body">
+          <div class="row my-1">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+              <h5 class="card-title">{{task.name}}</h5>
+            </div>
+          </div>
+          <div class="row my-1">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6 col-xl-6">
+              <h6 class="card-subtitle">Fecha Programada</h6>
+              <p class="card-text"><small>{{task.plannedEndDate}}</small></p>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6 col-xl-6">
+              <h6 class="card-subtitle">Fecha de Término</h6>
+              <p class="card-text"><small>{{task.endDate}}</small></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Empty Task List Else Statement -->
+  <ng-template #emptyTaskList>
+    <div class="row my-2">
+      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 text-center">
+        <h2 class="placeholder-title">No hay tareas registradas</h2>
+      </div>
+    </div>
+  </ng-template>
+</div>
+
+<!-- Create Task Modal -->
+<div class="modal fade" id="staticBackdrop" data-backdrop="static" tabindex="-1" role="dialog"
+  aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title inner-section-title" id="staticBackdropLabel">Registro de Nueva Tarea</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body" *ngIf="showCreation">
+        <app-task-create [project]="project" *ngIf="project" (taskCreatedEvent)="addNewTaskToList($event)">
+        </app-task-create>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-block btn-secondary" data-dismiss="modal">Cerrar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Update Task Modal -->
+<div class="modal fade" id="updateTaskModal" data-backdrop="static" tabindex="-1" role="dialog"
+  aria-labelledby="updateTaskModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title inner-section-title" id="updateTaskModalLabel">Modificar Tarea</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <app-task-update [task]="selectedTask" *ngIf="selectedTask" (taskUpdatedEvent)="updateTaskInList($event)">
+        </app-task-update>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-block btn-secondary" data-dismiss="modal">Cerrar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Delete Task Modal -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+  aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-xs-12 col-sm-12 col-md-9 col-lg-9 col-xl-9">
+            <p class="card-text">¿Seguro que desea eliminar la tarea?</p>
+          </div>
+          <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3 col-xl-3">
+            <button class="btn btn-danger btn-block" (click)="deleteTask()" data-dismiss="modal">
+              Eliminar
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

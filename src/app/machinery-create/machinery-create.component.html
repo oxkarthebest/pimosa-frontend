@@ -1,0 +1,291 @@
+<!-- Section Title -->
+<h2 class="section-title">
+    <span class="section-icon mr-2"><i class="fas fa-plus"></i></span>
+    <span>Registrar Maquinaria</span>
+</h2>
+
+<!-- Alert Messages -->
+<div class="alert alert-success alert-dismissible fade show" role="alert" *ngIf="successAlertMessage">
+    {{successAlertMessage}}
+    <button type="button" class="close" aria-label="Close" (click)="closeSuccessAlert()">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+
+<div class="alert alert-danger alert-dismissible fade show" role="alert" *ngIf="errorAlertMessage">
+    {{errorAlertMessage}}
+    <button type="button" class="close" aria-label="Close" (click)="closeErrorAlert()">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+
+<form [formGroup]="newMachineryForm" (submit)="submitNewMachineryForm()">
+    <div class="form-row">
+        <div class="form-group col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+            <!-- Name Input -->
+            <div class="form-group">
+                <label for="nameInput">
+                    <span class="form-label">Nombre de la Maquinaria</span>
+                </label>
+                <input type="text" class="form-control" id="nameInput" formControlName="name"
+                    [ngClass]="(newMachineryForm.get('name').invalid && (newMachineryForm.get('name').touched || newMachineryForm.get('name').dirty) ) ? 'input-invalid' : 'input-default'" />
+                <!-- Helper Text -->
+                <div
+                    *ngIf="(newMachineryForm.get('name').valid) || (newMachineryForm.get('name').invalid && (newMachineryForm.get('name').pristine && newMachineryForm.get('name').untouched) )">
+                    <small id="nameInputHelp" class="form-text text-muted">
+                        Ingrese el nombre de la maquinaria.
+                    </small>
+                </div>
+                <!-- Error Handling -->
+                <div
+                    *ngIf="newMachineryForm.get('name').invalid && (newMachineryForm.get('name').dirty || newMachineryForm.get('name').touched)">
+                    <small id="nameInputError" class="form-text text-danger">
+                        <div *ngIf="newMachineryForm.get('name').hasError('required')">
+                            Es necesario ingresar el nombre de la maquinaria.
+                        </div>
+                        <div *ngIf="newMachineryForm.get('name').hasError('maxlength')">
+                            El nombre de la maquinaria no puede contener más de 254 caracteres.
+                        </div>
+                        <div *ngIf="newMachineryForm.get('name').hasError('minlength')">
+                            El nombre de la maquinaria debe contener al menos 2 caracteres.
+                        </div>
+                    </small>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-row">
+        <div class="form-group col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+            <!-- Code Input -->
+            <div class="form-group">
+                <label for="codeInput">
+                    <span class="form-label">Código de Equipo</span>
+                </label>
+                <input type="text" class="form-control" id="codeInput" formControlName="code"
+                    [ngClass]="(newMachineryForm.get('code').invalid && (newMachineryForm.get('code').touched || newMachineryForm.get('code').dirty) ) ? 'input-invalid' : 'input-default'" />
+                <!-- Helper Text -->
+                <div
+                    *ngIf="(newMachineryForm.get('code').valid) || (newMachineryForm.get('code').invalid && (newMachineryForm.get('code').pristine && newMachineryForm.get('code').untouched) )">
+                    <small id="codeInputHelp" class="form-text text-muted">
+                        Ingrese el código de equipo.
+                    </small>
+                </div>
+                <!-- Error Handling -->
+                <div
+                    *ngIf="newMachineryForm.get('code').invalid && (newMachineryForm.get('code').dirty || newMachineryForm.get('code').touched)">
+                    <small id="codeInputError" class="form-text text-danger">
+                        <div *ngIf="newMachineryForm.get('code').hasError('required')">
+                            Es necesario ingresar el código de equipo.
+                        </div>
+                        <div *ngIf="newMachineryForm.get('code').hasError('maxlength')">
+                            El código de equipo no puede contener más de 254 caracteres.
+                        </div>
+                        <div *ngIf="newMachineryForm.get('code').hasError('minlength')">
+                            El código de equipo debe contener al menos 2 caracteres.
+                        </div>
+                    </small>
+                </div>
+            </div>
+        </div>
+        <div class="form-group col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+            <!-- Brand Input -->
+            <div class="form-group">
+                <label for="brandInput">
+                    <span class="form-label">Marca</span>
+                </label>
+                <input type="text" class="form-control" id="brandInput" formControlName="brand"
+                    [ngClass]="(newMachineryForm.get('brand').invalid && (newMachineryForm.get('brand').touched || newMachineryForm.get('brand').dirty) ) ? 'input-invalid' : 'input-default'" />
+                <!-- Helper Text -->
+                <div
+                    *ngIf="(newMachineryForm.get('brand').valid) || (newMachineryForm.get('brand').invalid && (newMachineryForm.get('brand').pristine && newMachineryForm.get('brand').untouched) )">
+                    <small id="brandInputHelp" class="form-text text-muted">
+                        Ingrese la marca.
+                    </small>
+                </div>
+                <!-- Error Handling -->
+                <div
+                    *ngIf="newMachineryForm.get('brand').invalid && (newMachineryForm.get('brand').dirty || newMachineryForm.get('brand').touched)">
+                    <small id="brandInputError" class="form-text text-danger">
+                        <div *ngIf="newMachineryForm.get('brand').hasError('maxlength')">
+                            La marca no puede contener más de 254 caracteres.
+                        </div>
+                        <div *ngIf="newMachineryForm.get('brand').hasError('minlength')">
+                            La marca debe contener al menos 2 caracteres.
+                        </div>
+                    </small>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-row">
+        <div class="form-group col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+            <!-- Price Input -->
+            <div class="form-group">
+                <label for="priceInput">
+                    <span class="form-label">Precio</span>
+                </label>
+                <input type="number" class="form-control" id="priceInput" formControlName="price"
+                    [ngClass]="(newMachineryForm.get('price').invalid && (newMachineryForm.get('price').touched || newMachineryForm.get('price').dirty) ) ? 'input-invalid' : 'input-default'" />
+                <!-- Helper Text -->
+                <div
+                    *ngIf="(newMachineryForm.get('price').valid) || (newMachineryForm.get('price').invalid && (newMachineryForm.get('price').pristine && newMachineryForm.get('price').untouched) )">
+                    <small id="priceInputHelp" class="form-text text-muted">
+                        Ingrese el precio de la maquinaria.
+                    </small>
+                </div>
+                <!-- Error Handling -->
+                <div
+                    *ngIf="newMachineryForm.get('price').invalid && (newMachineryForm.get('price').dirty || newMachineryForm.get('price').touched)">
+                    <small id="priceInputError" class="form-text text-danger">
+                        <div *ngIf="newMachineryForm.get('price').hasError('maxlength')">
+                            El precio no puede contener más de 8 caracteres.
+                        </div>
+                        <div *ngIf="newMachineryForm.get('price').hasError('minlength')">
+                            El precio debe contener al menos 2 caracteres.
+                        </div>
+                    </small>
+                </div>
+            </div>
+        </div>
+        <div class="form-group col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+            <!-- Maintenance Cost Input -->
+            <div class="form-group">
+                <label for="maintenanceCostInput">
+                    <span class="form-label">Costo de Mantenimiento</span>
+                </label>
+                <input type="number" class="form-control" id="maintenanceCostInput" formControlName="maintenanceCost"
+                    [ngClass]="(newMachineryForm.get('maintenanceCost').invalid && (newMachineryForm.get('maintenanceCost').touched || newMachineryForm.get('maintenanceCost').dirty) ) ? 'input-invalid' : 'input-default'" />
+                <!-- Helper Text -->
+                <div
+                    *ngIf="(newMachineryForm.get('maintenanceCost').valid) || (newMachineryForm.get('maintenanceCost').invalid && (newMachineryForm.get('maintenanceCost').pristine && newMachineryForm.get('maintenanceCost').untouched) )">
+                    <small id="maintenanceCostInputHelp" class="form-text text-muted">
+                        Ingrese el costo de mantenimiento.
+                    </small>
+                </div>
+                <!-- Error Handling -->
+                <div
+                    *ngIf="newMachineryForm.get('maintenanceCost').invalid && (newMachineryForm.get('maintenanceCost').dirty || newMachineryForm.get('maintenanceCost').touched)">
+                    <small id="maintenanceCostInputError" class="form-text text-danger">
+                        <div *ngIf="newMachineryForm.get('maintenanceCost').hasError('required')">
+                            Es necesario ingresar el nombre del proveedor.
+                        </div>
+                        <div *ngIf="newMachineryForm.get('maintenanceCost').hasError('maxlength')">
+                            El costo de mantenimiento no puede contener más de 8 caracteres.
+                        </div>
+                        <div *ngIf="newMachineryForm.get('maintenanceCost').hasError('minlength')">
+                            El costo de mantenimiento debe contener al menos 2 caracteres.
+                        </div>
+                    </small>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-row">
+        <div class="form-group col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+            <!-- Acquisition Date Input -->
+            <div class="form-group">
+                <label for="acquisitionDateInput">
+                    <span class="form-label">Fecha de Adquisición</span>
+                </label>
+                <input type="date" class="form-control" id="acquisitionDateInput" formControlName="acquisitionDate"
+                    [ngClass]="(newMachineryForm.get('acquisitionDate').invalid && (newMachineryForm.get('acquisitionDate').touched || newMachineryForm.get('acquisitionDate').dirty) ) ? 'input-invalid' : 'input-default'" />
+                <!-- Helper Text -->
+                <div
+                    *ngIf="(newMachineryForm.get('acquisitionDate').valid) || (newMachineryForm.get('acquisitionDate').invalid && (newMachineryForm.get('acquisitionDate').pristine && newMachineryForm.get('acquisitionDate').untouched) )">
+                    <small id="acquisitionDateInputHelp" class="form-text text-muted">
+                        Ingrese la fecha de adquisición.
+                    </small>
+                </div>
+            </div>
+        </div>
+        <div class="form-group col-xs-12 col-sm-12 col-md-12 col-lg-6 col-xl-6">
+            <!-- Type Input -->
+            <label for="type">
+                <span class="form-label">Tipo</span>
+            </label>
+            <select class="form-control input-default" id="type" formControlName="type" aria-describedby="typeHelp">
+                <option selected disabled value="">Seleccionar</option>
+                <option *ngFor="let machineryType of machineryTypeList" value={{machineryType.pk}}>
+                    {{machineryType.name}}</option>
+            </select>
+            <small id="typeHelp" class="form-text text-muted">
+                Seleccione el tipo de maquinaria.
+            </small>
+        </div>
+    </div>
+
+    <div class="form-row">
+        <div class="form-group col-xs-12 col-sm-12 col-md-12 col-lg-6 col-xl-6">
+            <!-- Power Source Input -->
+            <label for="powerSource">
+                <span class="form-label">Fuente de Energía</span>
+            </label>
+            <select class="form-control input-default" id="powerSource" formControlName="powerSource"
+                aria-describedby="powerSourceHelp">
+                <option selected disabled value="">Seleccionar</option>
+                <option *ngFor="let powerSource of powerSourceList" value={{powerSource.pk}}>
+                    {{powerSource.name}}</option>
+            </select>
+            <small id="powerSourceHelp" class="form-text text-muted">
+                Seleccione la fuente de energía.
+            </small>
+        </div>
+        <div class="form-group col-xs-12 col-sm-12 col-md-12 col-lg-6 col-xl-6">
+            <!-- Displacement Input -->
+            <label for="displacement">
+                <span class="form-label">Modo de Transporte</span>
+            </label>
+            <select class="form-control input-default" id="displacement" formControlName="displacement"
+                aria-describedby="displacementHelp">
+                <option selected disabled value="">Seleccionar</option>
+                <option *ngFor="let displacement of displacementList" value={{displacement.pk}}>
+                    {{displacement.name}}</option>
+            </select>
+            <small id="displacementHelp" class="form-text text-muted">
+                Seleccione el modo de transporte.
+            </small>
+        </div>
+    </div>
+
+    <div class="form-row">
+        <div class="form-group col-xs-12 col-sm-12 col-md-12 col-lg-6 col-xl-6">
+            <!-- Operation Input -->
+            <label for="operation">
+                <span class="form-label">Operación que Realiza</span>
+            </label>
+            <select class="form-control input-default" id="operation" formControlName="operation"
+                aria-describedby="operationHelp">
+                <option selected disabled value="">Seleccionar</option>
+                <option *ngFor="let operation of operationList" value={{operation.pk}}>
+                    {{operation.name}}</option>
+            </select>
+            <small id="operationHelp" class="form-text text-muted">
+                Seleccione la operación que realiza.
+            </small>
+        </div>
+        <div class="form-group col-xs-12 col-sm-12 col-md-12 col-lg-6 col-xl-6">
+            <!-- Work Input -->
+            <label for="work">
+                <span class="form-label">Tipo de Trabajo</span>
+            </label>
+            <select class="form-control input-default" id="work" formControlName="work" aria-describedby="workHelp">
+                <option selected disabled value="">Seleccionar</option>
+                <option *ngFor="let work of workList" value={{work.pk}}>
+                    {{work.name}}</option>
+            </select>
+            <small id="workHelp" class="form-text text-muted">
+                Seleccione el tipo de trabajo que realiza.
+            </small>
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 text-center">
+            <!-- Submit Form Button -->
+            <button type="submit" class="btn btn-block primary-button"
+                [disabled]="!newMachineryForm.valid">Crear</button>
+        </div>
+    </div>
+</form>
